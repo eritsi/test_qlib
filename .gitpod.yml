@@ -1,0 +1,23 @@
+tasks:
+  - name: install google-cloud-sdk & gcloud configs
+    init: |
+      # try the following 2 lines due to dependency problem for the latest version
+      wget https://github.com/microsoft/qlib/archive/refs/tags/v0.8.4.zip
+      unzip v0.8.4.zip && rm v0.8.4.zip && cd qlib-0.8.4
+      # if the latest version on github progress, try the followings
+      # git clone https://github.com/microsoft/qlib.git && cd qlib
+      pip install numpy Cython
+      # to avoid ModuleNotFoundError: No module named ‘qlib.data._libs.rolling’
+      python setup.py build_ext --inplace
+      export PYTHONPATH=${PYTHONPATH}:${PWD}
+      # to get sample data for chinese market
+      python scripts/get_data.py qlib_data --target_dir ~/.qlib/qlib_data/cn_data --region cn
+      # to test LGBM
+      pip install -r examples/benchmarks/LightGBM/requirements.txt
+      qrun examples/benchmarks/LightGBM/workflow_config_lightgbm_Alpha360.yaml
+      # pip install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch
+  - name: install google-cloud-sdk & gcloud configs
+    init: |
+      pip install jupyter
+      jupyter notebook --ip=*
+    openMode: split-right
