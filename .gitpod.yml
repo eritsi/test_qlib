@@ -7,6 +7,7 @@ tasks:
       # if the latest version on github progress, try the followings
       # git clone https://github.com/microsoft/qlib.git && cd qlib
       pip install numpy Cython
+      python setup.py install
       # to avoid ModuleNotFoundError: No module named ‘qlib.data._libs.rolling’
       python setup.py build_ext --inplace
       export PYTHONPATH=${PYTHONPATH}:${PWD}
