@@ -16,9 +16,13 @@ tasks:
       # to test LGBM
       pip install -r examples/benchmarks/LightGBM/requirements.txt
       qrun examples/benchmarks/LightGBM/workflow_config_lightgbm_Alpha360.yaml
+      # there is a problem with Alpha158. 
+      # try also examples/workflow_by_code.ipynb with Alpha360
       # pip install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=10.1 -c pytorch
+      # pip install -r examples/benchmarks/LSTM/requirements.txt
+      # qrun examples/benchmarks/LSTM/workflow_config_lstm_Alpha360.yaml
   - name: install google-cloud-sdk & gcloud configs
     init: |
       pip install jupyter
-      jupyter notebook --ip=*
+      # jupyter notebook --ip=*
     openMode: split-right
